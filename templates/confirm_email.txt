@@ -1,0 +1,5 @@
+Hello, %[username]
+Welcome to %[website_name].
+Please click the following link to confirm your email address:
+%[url]
+

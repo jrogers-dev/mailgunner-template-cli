@@ -1,0 +1,2 @@
+Thanks for signing up for %{website_name}!
+Make sure to check out our %{foos}, %{bars}, and %{bazs}!
