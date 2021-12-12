@@ -21,9 +21,11 @@ https://learn-rails.com/install-rails-mac/index.html
 Once everything is installed and configured:
     - Clone this repository
     - Navigate to the cloned directory and open it in terminal
+    - Install gems 'rest-client' and 'json' if you don't have them
     - Make sure the script has executable permissions
     - Execute mailgun_template_cli.rb with the -p option
     - Include a valid JSON payload following the -p option with NO NEWLINE CHARACTERS
+    - Payload must be surrounded with single quotes
 
 
 A valid example payload looks like this:
@@ -43,8 +45,8 @@ A valid example payload looks like this:
         }
     }
     
- But the payload must be collapsed as such:
-  {"api_key": "YourMailGunAPIKey", "domain": "YourMailgunDomain.mailgun.org", "from": "Sender Name <mailgun@YourMailgunDomain.mailgun.org>", "to": "YourRecipient@domain.com", "subject": "A Subject!", "body": "<html><body>Email Text (HTML optional)</body></html>", "template": "welcome", "parameters": { "website_name": "WebsiteName", "foos": "Item1", "bars": "Item2", "bazs": "Item3"}}
+ But the payload must be collapsed and encapsulated as such:
+  '{"api_key": "YourMailGunAPIKey", "domain": "YourMailgunDomain.mailgun.org", "from": "Sender Name <mailgun@YourMailgunDomain.mailgun.org>", "to": "YourRecipient@domain.com", "subject": "A Subject!", "body": "<html><body>Email Text (HTML optional)</body></html>", "template": "welcome", "parameters": { "website_name": "WebsiteName", "foos": "Item1", "bars": "Item2", "bazs": "Item3"}}'
 
 Valid template names are: "welcome", "confirm_email", and "reset_password" with the arguments as follows:
 
