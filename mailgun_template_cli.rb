@@ -27,8 +27,7 @@ end
 #Check JSON payload to ensure it contains the three primary keys necessary 
 #for Mailgun's API
 def valid_payload?(payload)
-  if payload.key?(:api_key) && payload.key?(:domain) && payload.key?(:from) && payload.key?(:to)\
-     && payload.key?(:subject) && payload.key?(:body) && payload.key?(:template) && payload.key?(:parameters)
+  if payload.key?(:api_key) && payload.key?(:domain) && payload.key?(:from) && payload.key?(:to) && payload.key?(:subject) && payload.key?(:body) && payload.key?(:template) && payload.key?(:parameters)
     return true
   else
     puts "Invalid payload: JSON Payload must include key/value pairs for 'api_key', 'domain', 'from'"\
