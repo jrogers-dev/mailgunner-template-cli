@@ -27,10 +27,12 @@ end
 #Check JSON payload to ensure it contains the three primary keys necessary 
 #for Mailgun's API
 def valid_payload?(payload)
-  if payload.keys.include?(:to) && payload.keys.include?(:subject) && payload.keys.include?(:body) && payload.keys.include?(:template)
+  if payload.key?(:api_key) && payload.key?(:domain) && payload.key?(:from) && payload.key?(:to)\
+     && payload.key?(:subject) && payload.key?(:body) && payload.key?(:template)
     return true
   else
-    puts "Invalid payload: JSON Payload must include key/value pairs for \"to\", \"subject\", \"body\" and \"template\""
+    puts "Invalid payload: JSON Payload must include key/value pairs for 'api_key', 'domain', 'from'"\
+    ", 'to', 'subject', 'template' and 'parameters'"
     return false
   end
 end
@@ -76,12 +78,12 @@ end
 def deliver_payload(payload)
   begin
     RestClient.post(
-      "https://api:371499b4e5a12cbb862d7d479b76b5ef-7dcc6512-3712a0f4"\
-      "@api.mailgun.net/v3/sandbox113ccec289b54841b51be581ad4bc111.mailgun.org/messages",
-      :from => "Excited User <mailgun@sandbox113ccec289b54841b51be581ad4bc111.mailgun.org>",
+      "https://api:#{payload[:api_key]}"\
+      "@api.mailgun.net/v3/#{payload[:domain]}/messages",
+      :from => payload[:from],
       :to => payload[:to],
       :subject => payload[:subject],
-      :text => payload[:body]
+      :html => payload[:body]
     )
   rescue => e
     puts "Error posting payload to Mailgun API\n"
